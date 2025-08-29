@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 
 const Contact = () => {
+  console.log('Contact component rendered!'); // Added for debugging
   const [formMessage, setFormMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 

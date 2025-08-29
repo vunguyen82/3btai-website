@@ -25,7 +25,7 @@ const WhyChooseUs = () => {
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900">The 3BTAI Advantage</h2>
-          <p className="text-slate-600 mt-2">We're more than a technology provider; we're your partner in growth.</p>
+          <p className="text-slate-600 mt-2">We&apos;re more than a technology provider; we&apos;re your partner in growth.</p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {advantages.map((advantage) => (

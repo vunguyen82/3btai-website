@@ -21,7 +21,7 @@ const Contact = () => {
         <div className="light-card rounded-xl p-8 md:p-12 lg:p-16 max-w-4xl mx-auto">
           <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900">Ready to Transform Your Business?</h2>
-            <p className="text-slate-600 mt-2">Let's talk about how AI can help you achieve your goals. Fill out the form below for a free, no-obligation consultation.</p>
+            <p className="text-slate-600 mt-2">Let&apos;s talk about how AI can help you achieve your goals. Fill out the form below for a free, no-obligation consultation.</p>
           </div>
           <form id="contact-form" onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">

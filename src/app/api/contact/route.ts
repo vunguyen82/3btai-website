@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 
+export const runtime = 'edge'; // Added for Cloudflare Pages Edge Runtime compatibility
+
 export async function POST(request: Request) {
   try {
     const { name, company, email, phone, message } = await request.json();

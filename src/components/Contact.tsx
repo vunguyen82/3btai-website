@@ -7,6 +7,7 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    console.log('handleSubmit called!'); // Added for debugging
     e.preventDefault();
     setIsSubmitting(true);
     setFormMessage(''); // Clear previous messages

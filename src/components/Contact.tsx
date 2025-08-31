@@ -1,17 +1,20 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 const Contact = () => {
   console.log('Contact component rendered!'); // Added for debugging
   const [formMessage, setFormMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false); // New state for success/error status
+  const formRef = useRef<HTMLFormElement>(null); // Ref for the form element
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     console.log('handleSubmit called!'); // Added for debugging
     e.preventDefault();
     setIsSubmitting(true);
     setFormMessage(''); // Clear previous messages
+    setIsSuccess(false); // Reset success status
 
     const formData = new FormData(e.currentTarget);
     const data = {
@@ -35,13 +38,16 @@ const Contact = () => {
 
       if (response.ok) {
         setFormMessage(result.message || 'Email sent successfully!');
-        e.currentTarget.reset();
+        setIsSuccess(true);
+        formRef.current?.reset(); // Use ref to reset the form
       } else {
         setFormMessage(result.message || 'Failed to send email. Please try again.');
+        setIsSuccess(false);
       }
     } catch (error) {
       console.error('Error submitting form:', error);
       setFormMessage('An unexpected error occurred. Please try again later.');
+      setIsSuccess(false);
     } finally {
       setIsSubmitting(false);
       setTimeout(() => {
@@ -58,7 +64,7 @@ const Contact = () => {
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900">Ready to Transform Your Business?</h2>
             <p className="text-slate-600 mt-2">Let&apos;s talk about how AI can help you achieve your goals. Fill out the form below for a free, no-obligation consultation.</p>
           </div>
-          <form id="contact-form" onSubmit={handleSubmit}>
+          <form id="contact-form" onSubmit={handleSubmit} ref={formRef}> {/* Attach ref to the form */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
               <input type="text" placeholder="Your Name" name="name" required className="w-full bg-slate-100 text-slate-800 p-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-sky-500 focus:outline-none" />
               <input type="text" placeholder="Company Name" name="company" required className="w-full bg-slate-100 text-slate-800 p-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-sky-500 focus:outline-none" />
@@ -73,7 +79,7 @@ const Contact = () => {
             </div>
           </form>
           {formMessage && (
-            <div id="form-message" className={`text-center mt-4 ${formMessage.includes('successfully') ? 'text-green-600' : 'text-red-600'}`}>
+            <div id="form-message" className={`text-center mt-4 ${isSuccess ? 'text-green-600' : 'text-red-600'}`}>
               {formMessage}
             </div>
           )}

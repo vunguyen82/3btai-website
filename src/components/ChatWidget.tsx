@@ -17,8 +17,18 @@ const ChatWidget = () => {
   const N8N_WEBHOOK_URL = process.env.NEXT_PUBLIC_N8N_CHAT_WEBHOOK_URL; // Use NEXT_PUBLIC for client-side access
 
   useEffect(() => {
-    // Generate a unique session ID on component mount
-    setSessionId(`session_${Date.now()}_${Math.random().toString(36).substring(2)}`);
+    // Check for sessionId in localStorage
+    let storedSessionId = localStorage.getItem('chatSessionId');
+
+    if (storedSessionId) {
+      // If found, use it
+      setSessionId(storedSessionId);
+    } else {
+      // If not found, generate a new one and store it
+      const newSessionId = `session_${Date.now()}_${Math.random().toString(36).substring(2)}`;
+      localStorage.setItem('chatSessionId', newSessionId);
+      setSessionId(newSessionId);
+    }
   }, []); // Empty dependency array ensures this runs only once
 
   useEffect(() => {

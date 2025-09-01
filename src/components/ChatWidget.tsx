@@ -11,16 +11,22 @@ const ChatWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
+  const [sessionId, setSessionId] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const N8N_WEBHOOK_URL = process.env.NEXT_PUBLIC_N8N_CHAT_WEBHOOK_URL; // Use NEXT_PUBLIC for client-side access
+
+  useEffect(() => {
+    // Generate a unique session ID on component mount
+    setSessionId(`session_${Date.now()}_${Math.random().toString(36).substring(2)}`);
+  }, []); // Empty dependency array ensures this runs only once
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
   const handleSend = async () => {
-    if (input.trim() === '') return;
+    if (input.trim() === '' || !sessionId) return;
 
     const userMessage: Message = { text: input, sender: 'user' };
     setMessages((prevMessages) => [...prevMessages, userMessage]);
@@ -38,7 +44,7 @@ const ChatWidget = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ message: input }),
+        body: JSON.stringify({ message: input, sessionId }),
       });
 
       const data = await response.json();

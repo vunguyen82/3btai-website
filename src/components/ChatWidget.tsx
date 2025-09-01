@@ -18,7 +18,7 @@ const ChatWidget = () => {
 
   useEffect(() => {
     // Check for sessionId in localStorage
-    let storedSessionId = localStorage.getItem('chatSessionId');
+    const storedSessionId = localStorage.getItem('chatSessionId');
 
     if (storedSessionId) {
       // If found, use it

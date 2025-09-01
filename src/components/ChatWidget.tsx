@@ -44,7 +44,7 @@ const ChatWidget = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ message: input, sessionId }),
+        body: JSON.stringify({ chatInput: input, sessionId }),
       });
 
       const data = await response.json();

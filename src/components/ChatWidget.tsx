@@ -48,7 +48,7 @@ const ChatWidget = () => {
       });
 
       const data = await response.json();
-      const botMessage: Message = { text: data.response || "Sorry, I didn't understand that.", sender: 'bot' };
+      const botMessage: Message = { text: data.text || "Sorry, I didn't understand that.", sender: 'bot' };
       setMessages((prevMessages) => [...prevMessages, botMessage]);
     } catch (error) {
       console.error('Error communicating with n8n webhook:', error);

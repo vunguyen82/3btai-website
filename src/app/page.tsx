@@ -1,13 +1,16 @@
+import dynamic from 'next/dynamic';
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import Services from "@/components/Services";
-import WhyChooseUs from "@/components/WhyChooseUs";
-import HowItWorks from "@/components/HowItWorks";
-import About from "@/components/About";
-import Blog from "@/components/Blog";
-import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import ChatWidget from "@/components/ChatWidget"; // Import ChatWidget
+
+// Dynamically import components that are not immediately visible
+const Services = dynamic(() => import('@/components/Services'));
+const WhyChooseUs = dynamic(() => import('@/components/WhyChooseUs'));
+const HowItWorks = dynamic(() => import('@/components/HowItWorks'));
+const About = dynamic(() => import('@/components/About'));
+const Blog = dynamic(() => import('@/components/Blog'));
+const Contact = dynamic(() => import('@/components/Contact'));
+const ChatWidget = dynamic(() => import('@/components/ChatWidget'));
 
 export default function Home() {
   return (
@@ -23,7 +26,7 @@ export default function Home() {
         <Contact />
       </main>
       <Footer />
-      <ChatWidget /> {/* Add ChatWidget component */}
+      <ChatWidget />
     </>
   );
 }

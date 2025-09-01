@@ -5,6 +5,7 @@ import ReCAPTCHA from 'react-google-recaptcha';
 
 const Contact = () => {
   console.log('Contact component rendered!'); // Added for debugging
+  const [loadRecaptcha, setLoadRecaptcha] = useState(false);
   const [formMessage, setFormMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false); // New state for success/error status
@@ -72,6 +73,10 @@ const Contact = () => {
     setRecaptchaResponse(value);
   };
 
+  const handleFocus = () => {
+    setLoadRecaptcha(true);
+  };
+
   return (
     <section id="contact" className="py-20 bg-white">
       <div className="container mx-auto px-6">
@@ -82,19 +87,21 @@ const Contact = () => {
           </div>
           <form id="contact-form" onSubmit={handleSubmit} ref={formRef}> {/* Attach ref to the form */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-              <input type="text" placeholder="Your Name" name="name" required className="w-full bg-slate-100 text-slate-800 p-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-sky-500 focus:outline-none" />
-              <input type="text" placeholder="Company Name" name="company" required className="w-full bg-slate-100 text-slate-800 p-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-sky-500 focus:outline-none" />
-              <input type="email" placeholder="Email Address" name="email" required className="w-full bg-slate-100 text-slate-800 p-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-sky-500 focus:outline-none" />
-              <input type="tel" placeholder="Phone Number" name="phone" className="w-full bg-slate-100 text-slate-800 p-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-sky-500 focus:outline-none" />
+              <input type="text" placeholder="Your Name" name="name" required onFocus={handleFocus} className="w-full bg-slate-100 text-slate-800 p-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-sky-500 focus:outline-none" />
+              <input type="text" placeholder="Company Name" name="company" required onFocus={handleFocus} className="w-full bg-slate-100 text-slate-800 p-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-sky-500 focus:outline-none" />
+              <input type="email" placeholder="Email Address" name="email" required onFocus={handleFocus} className="w-full bg-slate-100 text-slate-800 p-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-sky-500 focus:outline-none" />
+              <input type="tel" placeholder="Phone Number" name="phone" onFocus={handleFocus} className="w-full bg-slate-100 text-slate-800 p-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-sky-500 focus:outline-none" />
             </div>
-            <textarea placeholder="Tell us about your business needs..." name="message" rows={5} required className="w-full bg-slate-100 text-slate-800 p-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-sky-500 focus:outline-none mb-6"></textarea>
+            <textarea placeholder="Tell us about your business needs..." name="message" rows={5} required onFocus={handleFocus} className="w-full bg-slate-100 text-slate-800 p-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-sky-500 focus:outline-none mb-6"></textarea>
             
-            <div className="my-4 flex justify-center">
-              <ReCAPTCHA
-                sitekey="6LdodrkrAAAAAGgcvz1mmSygH3f8N8Y4RPLdK_dC"
-                onChange={onRecaptchaChange}
-              />
-            </div>
+            {loadRecaptcha && (
+              <div className="my-4 flex justify-center">
+                <ReCAPTCHA
+                  sitekey="6LdodrkrAAAAAGgcvz1mmSygH3f8N8Y4RPLdK_dC"
+                  onChange={onRecaptchaChange}
+                />
+              </div>
+            )}
 
             <div className="text-center">
               <button type="submit" className="bg-sky-500 text-white font-bold px-8 py-4 rounded-lg text-lg w-full md:w-auto cta-button" disabled={isSubmitting}>

@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 const Hero = () => {
   return (
@@ -13,14 +14,17 @@ const Hero = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           <div className="light-card group p-6 rounded-xl bg-sky-50 transition-all duration-300 hover:shadow-xl">
+            <Image src="/drive-demand-icon.svg" alt="Drive Demand" width={56} height={56} className="mx-auto mb-4" />
             <h3 className="text-xl font-bold text-sky-600 group-hover:text-sky-700 transition mb-2">Drive Demand</h3>
             <p className="text-slate-600">Attract and engage more of the right customers with intelligent automation.</p>
           </div>
           <div className="light-card group p-6 rounded-xl bg-indigo-50 transition-all duration-300 hover:shadow-xl">
+            <Image src="/boost-revenue-icon.svg" alt="Boost Revenue" width={56} height={56} className="mx-auto mb-4" />
             <h3 className="text-xl font-bold text-indigo-600 group-hover:text-indigo-700 transition mb-2">Boost Revenue</h3>
             <p className="text-slate-600">Increase the value of every customer relationship through personalization.</p>
           </div>
           <div className="light-card group p-6 rounded-xl bg-pink-50 transition-all duration-300 hover:shadow-xl">
+            <Image src="/optimize-cost-icon.svg" alt="Optimize Costs" width={56} height={56} className="mx-auto mb-4" />
             <h3 className="text-xl font-bold text-pink-600 group-hover:text-pink-700 transition mb-2">Optimize Costs</h3>
             <p className="text-slate-600">Work smarter, streamline operations, and run leaner with AI-powered efficiency.</p>
           </div>

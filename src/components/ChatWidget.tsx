@@ -118,7 +118,7 @@ const ChatWidget = () => {
             </svg>
 
             {/* Header Content */}
-            <div className="relative z-10 p-4">
+            <div className="relative z-10 p-4 pb-6">
               <div className="flex justify-between items-start">
                 <div>
                   <h3 className="text-lg font-semibold text-white">Chat with 3BT Agent</h3>

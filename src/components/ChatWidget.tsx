@@ -98,13 +98,42 @@ const ChatWidget = () => {
       {/* Chat Window */}
       {isOpen && (
         <div className="fixed bottom-24 right-4 w-80 h-96 bg-white rounded-lg shadow-xl flex flex-col z-50">
-          <div className="bg-blue-600 text-white p-4 rounded-t-lg flex justify-between items-center">
-            <h3 className="text-lg font-semibold">Chat with us!</h3>
-            <button onClick={() => setIsOpen(false)} className="focus:outline-none">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
+          <div className="relative rounded-t-lg overflow-hidden">
+            {/* Wavy Background */}
+            <svg
+              className="absolute top-0 left-0 w-full h-full"
+              preserveAspectRatio="none"
+              viewBox="0 0 320 120" // Adjusted viewBox for the path
+            >
+              <defs>
+                <linearGradient id="header-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" style={{ stopColor: '#2563eb' }} /> {/* blue-600 */}
+                  <stop offset="100%" style={{ stopColor: '#0ea5e9' }} /> {/* sky-500 */}
+                </linearGradient>
+              </defs>
+              <path
+                d="M0,0 H320 V90 Q240,110 160,90 T0,90 Z"
+                fill="url(#header-gradient)"
+              />
+            </svg>
+
+            {/* Header Content */}
+            <div className="relative z-10 p-4">
+              <div className="flex justify-between items-start">
+                <div>
+                  <h3 className="text-lg font-semibold text-white">Chat with 3BT Agent</h3>
+                  <div className="flex items-center text-sm text-white opacity-90 mt-1">
+                    <span className="w-2 h-2 bg-green-400 rounded-full mr-2"></span>
+                    We are online!
+                  </div>
+                </div>
+                <button onClick={() => setIsOpen(false)} className="focus:outline-none text-white">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+            </div>
           </div>
           <div className="flex-1 p-4 overflow-y-auto" style={{ scrollBehavior: 'smooth' }}>
             {messages.map((msg, index) => (

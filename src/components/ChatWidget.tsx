@@ -112,7 +112,7 @@ const ChatWidget = () => {
                 </linearGradient>
               </defs>
               <path
-                d="M0,0 H320 V90 Q240,110 160,90 T0,90 Z"
+                d="M0,0 H320 V90 C240,70 160,110 0,90 Z"
                 fill="url(#header-gradient)"
               />
             </svg>

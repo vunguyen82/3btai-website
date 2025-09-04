@@ -17,18 +17,23 @@ const ChatWidget = () => {
   const N8N_WEBHOOK_URL = process.env.NEXT_PUBLIC_N8N_CHAT_WEBHOOK_URL; // Use NEXT_PUBLIC for client-side access
 
   useEffect(() => {
-    // Check for sessionId in localStorage
-    const storedSessionId = localStorage.getItem('chatSessionId');
+    let sessionId = localStorage.getItem('chatSessionId');
+    const userName = localStorage.getItem('userName');
+    let initialBotMessage: Message;
 
-    if (storedSessionId) {
-      // If found, use it
-      setSessionId(storedSessionId);
+    if (sessionId) {
+      // Existing user
+      const welcomeText = userName ? `Welcome back, ${userName}!` : 'Welcome back!';
+      initialBotMessage = { text: welcomeText, sender: 'bot' };
     } else {
-      // If not found, generate a new one and store it
-      const newSessionId = `session_${Date.now()}_${Math.random().toString(36).substring(2)}`;
-      localStorage.setItem('chatSessionId', newSessionId);
-      setSessionId(newSessionId);
+      // New user
+      sessionId = `session_${Date.now()}_${Math.random().toString(36).substring(2)}`;
+      localStorage.setItem('chatSessionId', sessionId);
+      initialBotMessage = { text: 'Hi there, welcome to 3BTAI. How can I help?', sender: 'bot' };
     }
+
+    setSessionId(sessionId);
+    setMessages([initialBotMessage]);
   }, []); // Empty dependency array ensures this runs only once
 
   useEffect(() => {

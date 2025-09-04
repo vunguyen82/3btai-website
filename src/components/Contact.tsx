@@ -51,6 +51,9 @@ const Contact = () => {
       if (response.ok) {
         setFormMessage(result.message || 'Email sent successfully!');
         setIsSuccess(true);
+        if (data.name) {
+          localStorage.setItem('userName', data.name as string);
+        }
         formRef.current?.reset(); // Use ref to reset the form
         setRecaptchaResponse(null); // Reset reCAPTCHA
       } else {

@@ -160,7 +160,7 @@ const ChatWidget = () => {
               onClick={handleSend}
               className="ml-3 w-10 h-10 flex-shrink-0 bg-blue-600 text-white rounded-full flex items-center justify-center focus:outline-none hover:bg-blue-700 transition-colors"
             >
-              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" className="w-5 h-5 transform -rotate-45 -translate-x-px">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" className="w-6 h-6 transform rotate-45">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21,3,3,10.53l6.98,2.1,2.1,6.98Z"></path>
               </svg>
             </button>

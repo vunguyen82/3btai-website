@@ -147,10 +147,10 @@ const ChatWidget = () => {
             ))}
             <div ref={messagesEndRef} />
           </div>
-          <div className="p-4 border-t border-gray-200 flex">
+          <div className="p-4 border-t border-gray-100 flex items-center">
             <input
               type="text"
-              className="flex-1 border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="flex-1 bg-transparent p-2 focus:outline-none"
               placeholder="Type your message..."
               value={input}
               onChange={(e) => setInput(e.target.value)}
@@ -158,9 +158,11 @@ const ChatWidget = () => {
             />
             <button
               onClick={handleSend}
-              className="ml-2 bg-blue-600 text-white rounded-lg px-4 py-2 focus:outline-none"
+              className="ml-3 w-10 h-10 flex-shrink-0 bg-blue-600 text-white rounded-full flex items-center justify-center focus:outline-none hover:bg-blue-700 transition-colors"
             >
-              Send
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" className="w-5 h-5 transform -rotate-45 -translate-x-px">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21,3,3,10.53l6.98,2.1,2.1,6.98Z"></path>
+              </svg>
             </button>
           </div>
         </div>

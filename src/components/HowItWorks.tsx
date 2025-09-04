@@ -6,16 +6,22 @@ const HowItWorks = () => {
       step: 1,
       title: 'Consultation',
       description: 'We start by understanding your unique business goals and challenges.',
+      bgColor: 'bg-sky-500',
+      textColor: 'text-white',
     },
     {
       step: 2,
       title: 'Implementation',
       description: 'Our expert team handles the entire technical setup and integration for you.',
+      bgColor: 'bg-indigo-500',
+      textColor: 'text-white',
     },
     {
       step: 3,
       title: 'Growth',
       description: 'You see measurable results as AI begins to drive demand and optimize costs.',
+      bgColor: 'bg-pink-500',
+      textColor: 'text-white',
     },
   ];
 
@@ -32,7 +38,7 @@ const HowItWorks = () => {
             {steps.map((item) => (
               <div key={item.step} className="text-center">
                 <div className="relative inline-block bg-slate-50 px-2">
-                  <div className="w-16 h-16 bg-white border-2 border-sky-500 rounded-full flex items-center justify-center text-2xl font-bold text-sky-500 mb-4">
+                  <div className={`w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mb-4 ${item.bgColor} ${item.textColor}`}>
                     {item.step}
                   </div>
                 </div>
